@@ -19,29 +19,10 @@ vim.opt.rtp:prepend(lazypath)
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
 vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+vim.g.maplocalleader = " "
 
 -- Setup lazy.nvim
-require("lazy").setup({
-  spec = {
-	  {'ThePrimeagen/harpoon'},
-	  {'rebelot/kanagawa.nvim'},
-	  {'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' }},
-	  {'nvim-treesitter/nvim-treesitter', build = ':TSUpdate'},
-	  {'mbbill/undotree'},
-	  {'williamboman/mason.nvim'},
-	  {'williamboman/mason-lspconfig.nvim'},
-	  {'neovim/nvim-lspconfig'},
-	  {'hrsh7th/cmp-nvim-lsp'},
-	  {'hrsh7th/nvim-cmp'},
-      {"polirritmico/monokai-nightasty.nvim", lazy = false, priority = 1000},
-      {'nvim-lualine/lualine.nvim', dependencies = { 'nvim-tree/nvim-web-devicons' }},
-      {'mg979/vim-visual-multi'},
-      {'m4xshen/autoclose.nvim'},
-      {'terrortylor/nvim-comment'},
-      {'ggandor/leap.nvim'}
-	  --   { import = "plugins" },
-  },
+require("lazy").setup("plugins",{
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
   install = { colorscheme = { "habamax" } },
