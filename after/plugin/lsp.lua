@@ -2,6 +2,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(event)
         local opts = { buffer = event.buf }
 
+        -- Klawiszowe skróty LSP
         vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
         vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
         vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
@@ -12,6 +13,26 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
         vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
         vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+
+        -- Ustawienia formatowania
+        vim.bo[event.buf].tabstop = 4
+        vim.bo[event.buf].shiftwidth = 4
+        vim.bo[event.buf].expandtab = true
+
+        -- Domyślne wyłączenie hintów
+        vim.diagnostic.config({
+            severity_sort = true,
+            virtual_text = {
+                prefix = '●',
+                spacing = 4,
+                severity = { min = vim.diagnostic.severity.WARN }, -- Ukryj hinty
+            },
+            signs = true,
+            underline = {
+                severity = { min = vim.diagnostic.severity.WARN }, -- Wyłącz podkreślanie dla hintów
+            },
+            update_in_insert = false,
+        })
     end,
 })
 
@@ -27,22 +48,13 @@ local cmp = require('cmp')
 cmp.setup({
     sources = {
         { name = 'nvim_lsp' },
+        { name = 'buffer' },
     },
     snippet = {
         expand = function(args)
             -- You need Neovim v0.10 to use vim.snippet
             vim.snippet.expand(args.body)
         end,
-    },
-    mapping = cmp.mapping.preset.insert({}),
-})
-
-local cmp = require('cmp')
-
-cmp.setup({
-    sources = {
-        { name = 'nvim_lsp' },
-        { name = 'buffer' },
     },
     mapping = cmp.mapping.preset.insert({
         ['<CR>'] = cmp.mapping.confirm({ select = false }),
@@ -64,7 +76,8 @@ cmp.setup({
     }),
 })
 
-local show_hints = true -- Zmienna kontrolująca widoczność hintów
+-- Funkcja do przełączania hintów
+local show_hints = false -- Domyślnie hinty wyłączone
 
 function ToggleHints()
     show_hints = not show_hints
