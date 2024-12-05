@@ -24,4 +24,3 @@ local settings = {
     },
 }
 require("autoclose").setup(settings)
-

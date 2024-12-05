@@ -60,3 +60,35 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+vim.api.nvim_create_user_command("ReplacePolishChar", function()
+    local substitutions = {
+        ['ą'] = 'a',
+        ['ć'] = 'c',
+        ['ę'] = 'e',
+        ['ł'] = 'l',
+        ['ń'] = 'n',
+        ['ó'] = 'o',
+        ['ś'] = 's',
+        ['ź'] = 'z',
+        ['ż'] = 'z',
+        ['Ą'] = 'A',
+        ['Ć'] = 'C',
+        ['Ę'] = 'E',
+        ['Ł'] = 'L',
+        ['Ń'] = 'N',
+        ['Ó'] = 'O',
+        ['Ś'] = 'S',
+        ['Ź'] = 'Z',
+        ['Ż'] = 'Z'
+    }
+
+    local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+    for i, line in ipairs(lines) do
+        for k, v in pairs(substitutions) do
+            line = line:gsub(k, v)
+        end
+        lines[i] = line
+    end
+    vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+end, {})
