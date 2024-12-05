@@ -1,27 +1,27 @@
--- https://github.com/m4xshen/autoclose.nvim/blob/main/doc/autoclose.nvim.txt
-local config = {
-   keys = {
-      ["("] = { escape = false, close = true, pair = "()" },
-      ["["] = { escape = false, close = true, pair = "[]" },
-      ["{"] = { escape = false, close = true, pair = "{}" },
+-- https://github.com/m4xshen/autoclose.nvim/blob/main/README.md
+local settings = {
+    keys = {
+        ["("] = { escape = false, close = true, pair = "()" },
+        ["["] = { escape = false, close = true, pair = "[]" },
+        ["{"] = { escape = false, close = true, pair = "{}" },
 
-      [">"] = { escape = true, close = false, pair = "<>" },
-      [")"] = { escape = true, close = false, pair = "()" },
-      ["]"] = { escape = true, close = false, pair = "[]" },
-      ["}"] = { escape = true, close = false, pair = "{}" },
+        [">"] = { escape = true, close = false, pair = "<>" },
+        [")"] = { escape = true, close = false, pair = "()" },
+        ["]"] = { escape = true, close = false, pair = "[]" },
+        ["}"] = { escape = true, close = false, pair = "{}" },
 
-      ['"'] = { escape = true, close = true, pair = '""' },
-      ["'"] = { escape = true, close = true, pair = "''" },
-      ["`"] = { escape = true, close = true, pair = "``" },
-   },
-   options = {
-      disabled_filetypes = { "text" },
-      disable_when_touch = false,
-      touch_regex = "[%w(%[{]",
-      pair_spaces = false,
-      auto_indent = true,
-      disable_command_mode = false,
-   },
+        ['"'] = { escape = true, close = true, pair = '""' },
+        ["'"] = { escape = true, close = true, pair = "''" },
+        ["`"] = { escape = true, close = true, pair = "``" },
+    },
+    options = {
+        disabled_filetypes = { "text" },
+        disable_when_touch = false,
+        touch_regex = "[%w(%[{]",
+        pair_spaces = false,
+        auto_indent = true,
+        disable_command_mode = false,
+    },
 }
+require("autoclose").setup(settings)
 
-require("autoclose").setup(config)
