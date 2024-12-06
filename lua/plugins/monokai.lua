@@ -2,7 +2,7 @@ return {
     "polirritmico/monokai-nightasty.nvim", lazy = false, priority = 1000,
     config = function()
         local opts = {
-            dark_style_background = "default",  -- default, dark, transparent, #color
+            dark_style_background = "#060004",  -- default, dark, transparent, #color
             light_style_background = "default", -- default, dark, transparent, #color
             hl_styles = {
                 -- Style to be applied to selected syntax groups: (See `:help nvim_set_hl` for supported keys)
@@ -18,7 +18,7 @@ return {
             color_headers = false,         -- Enable header colors for each header level (h1, h2, etc.)
             dim_inactive = false,          -- dims inactive windows
             lualine_bold = true,           -- Lualine headers will be bold or regular
-            lualine_style = "default",     -- "dark", "light" or "default" (default follows dark/light style)
+            lualine_style = "dark",     -- "dark", "light" or "default" (default follows dark/light style)
             markdown_header_marks = true, -- Add headers marks highlights (the `#` character) to Treesitter highlight query
 
             -- Set the colors for terminal-mode (`:h terminal-config`). `false` to disable it.
@@ -61,6 +61,6 @@ return {
         }
 
         require("monokai-nightasty").load(opts)
-        -- vim.cmd("set background=dark")
-        -- vim.cmd("colorscheme monokai-nightasty")
+        vim.cmd("set background=dark")
+        vim.cmd("colorscheme monokai-nightasty")
     end }
