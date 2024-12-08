@@ -5,5 +5,6 @@ return {
     {'hrsh7th/nvim-cmp'},
     {'mg979/vim-visual-multi'},
     {'terrortylor/nvim-comment'},
+    {'mfussenegger/nvim-dap'},
     --   { import = "plugins" },
 }

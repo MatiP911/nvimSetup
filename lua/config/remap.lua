@@ -40,6 +40,16 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
+--X w normal nie idzie do buffera
+vim.keymap.set("n", "x", '"_x')
+
+--Increment numbers
+vim.keymap.set("n", "+", '<C-a>')
+vim.keymap.set("n", "-", '<C-x>')
+
+--lear w - write
+vim.keymap.set("n", "<leader>w", ':update<Return>', {noremap=true, silent = true})
+
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
@@ -92,3 +102,8 @@ vim.api.nvim_create_user_command("ReplacePolishChar", function()
     end
     vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
 end, {})
+
+
+--dab C++
+vim.keymap.set("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>")
+vim.keymap.set("n", "<leader>dr", "<cmd> DapContinue <CR>")

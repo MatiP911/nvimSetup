@@ -60,6 +60,7 @@ return {
             },
         }
 
+
         require("monokai-nightasty").load(opts)
         vim.cmd("set background=dark")
         vim.cmd("colorscheme monokai-nightasty")
